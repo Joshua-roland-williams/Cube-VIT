@@ -1,0 +1,269 @@
+html {
+    scroll-behavior: smooth;
+}
+
+
+/* General Styles */
+body {
+    margin: 0;
+    background: url("assets/stars.jpg") no-repeat center center fixed;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+/* Navigation Bar */
+nav {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background: purple;
+    padding: 5px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    margin: 10px auto;
+    width: 90%;
+    height: auto;
+    z-index: 1000;
+}
+
+.navbar-logo {
+    width: clamp(50px, 5vw, 200px);
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+    border-radius: 50%;
+    margin-left: 30%;
+}
+
+.navbar-logo:hover {
+    transform: scale(1.1);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0;
+    margin: 0 auto;
+}
+
+nav ul li {
+    position: relative;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+/* Dropdown Styling */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: rgb(97, 9, 97);
+    padding: 10px 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    min-width: 180px;
+    z-index: 1001;
+}
+
+.dropdown-menu li {
+    display: block;
+    padding: 10px 20px;
+}
+
+.dropdown-menu li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    font-weight: normal;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu li a:hover {
+    background: rgba(43, 41, 41, 0.911);
+    border-radius: 5px;
+}
+
+/* Authentication Buttons */
+.auth-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    border: none;
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.login {
+    background: blue;
+    color: white;
+}
+
+.signin {
+    background: yellow;
+    color: black;
+}
+
+/* Hero Section */
+.Hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.hero-text {
+    position: relative;
+    z-index: 1;
+    padding-top: 180px; /* Adjust so text sits below navbar */
+    color: white;
+    text-shadow: 2px 2px 5px black;
+}
+
+/* Title and Subtitle */
+.title {
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 3px 3px 5px black;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    color: white;
+    text-shadow: 2px 2px 4px black;
+}
+
+/* Cube Image */
+.cube {
+    width: 200px;
+    margin: 20px auto;
+    display: block;
+}
+
+/* Sections Below */
+.section {
+    padding: 80px 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .subtitle {
+        font-size: 1.3rem;
+    }
+
+    nav ul li a {
+        font-size: 1rem;
+    }
+
+    button {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px 15px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+        margin: 0;
+    }
+
+    .auth-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+
+    .subtitle {
+        font-size: 1.1rem;
+    }
+
+    .cube {
+        width: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 1.8rem;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+    }
+
+    nav ul li a {
+        font-size: 0.95rem;
+    }
+
+    button {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+
+    .cube {
+        width: 120px;
+    }
+
+    .navbar-logo {
+        width: 50px;
+    }
+}
+
+.zoom-in {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 1s ease-out, transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.zoom-in.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+
