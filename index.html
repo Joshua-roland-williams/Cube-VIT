@@ -1,59 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Cubing Club</title>
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="scripts.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Cubing Club</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="scripts.js"></script>
 </head>
 <body>
 
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <a href="#"><img src="assets/cube1.png" alt="Home" class="navbar-logo"></a>
-        <ul>
-            <li><a href="#">Timer</a></li>
-            <li><a href="aurorasolve.html">Practice</a></li>
-            <li><a href="#">Upcoming Events</a></li>
-            <li class="dropdown">
-                <a href="#">Our Team ▾</a>
-                <ul class="dropdown-menu">
-                    <li><a href="aura.html">Board Aurora</a></li>
-                    <li><a href="legacy.html">Our Legacy</a></li>
-                    <li><a href="devs.html">Our Devs</a></li>
-                </ul>
-            </li>          
-            <li class="auth-buttons">
-                <button class="login">Log In</button>
-                <button class="signin">Sign In</button>
-            </li>
-        </ul>
-    </nav>
-
-    <!-- Hero section with the video -->
-    <section class="Hero">
-        <video autoplay muted loop playsinline class="background-video">
-            <source src="assets/space.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <div class="hero-text">
-            <h1 class="title">Welcome to CUBE VIT</h1>
-            <p class="subtitle">Just CUBE it Macha!!</p>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <a href="#"><img src="assets/cube1.png" alt="Home" class="navbar-logo" /></a>
+    <div class="nav-links">
+      <a href="#">Timer</a>
+      <a href="aurorasolve.html">Practice</a>
+      <a href="events.html">Upcoming Events</a>
+      <div class="dropdown">
+        <a href="#">Our Team ▾</a>
+        <div class="dropdown-menu">
+          <a href="aura.html">Board Aurora</a>
+          <a href="legacy.html">Our Legacy</a>
+          <a href="devs.html">Our Devs</a>
         </div>
-    </section>
+      </div>
+    </div>
+    <div class="auth-buttons">
+      <button class="login">Log In</button>
+      <button class="signin">Sign In</button>
+    </div>
+  </nav>
 
-    <!-- 🔹 Scroll-down Sections -->
-<section class="section zoom-in" id="vision">
+  <!-- Hero Section -->
+  <section class="Hero">
+    <video autoplay muted loop playsinline class="background-video">
+      <source src="assets/cubesh.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+    <div class="hero-text">
+      <h1 class="title">Welcome to CUBE VIT</h1>
+      <p class="subtitle">Just CUBE it Macha!!</p>
+    </div>
+  </section>
+
+  <!-- Custom SVG Shape Divider -->
+  <div class="custom-shape-divider-top-1747509643">
+    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+         viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path d="M1200,0H0V120H281.94C572.9,116.24,602.45,3.86,
+               602.45,3.86h0S632,116.24,923,120h277Z"
+            class="shape-fill"></path>
+    </svg>
+  </div>
+
+  <!-- Scroll-down Sections -->
+  <section class="section zoom-in" id="vision">
     <h2>Our Vision</h2>
     <p>To revolutionize cubing through technology and community.</p>
-</section>
+  </section>
 
-<section class="section zoom-in" id="mission">
+  <!-- Modal for Vision -->
+  <div id="visionModal" class="modal">
+    <span class="close-btn" id="closeModal">&times;</span>
+    <img src="assets/gpt1.png" alt="Vision Image" class="modal-content" />
+  </div>
+
+  <section class="section zoom-in" id="mission">
     <h2>Our Mission</h2>
     <p>To create a platform for cubers to learn, grow, and compete.</p>
-</section>
-
+  </section>
 
 </body>
 </html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Telescope Zoom Website with Vignette</title>
+  <style>
+    body {
+      background: #111;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      position: relative;
+    }
+
+    #telescope-container, #moon-container {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100vw;
+      height: 100vh;
+      transition: opacity 0.8s;
+      z-index: 10;
+    }
+
+    #telescope-img {
+      width: 400px;
+      height: auto;
+      cursor: pointer;
+      transition: opacity 0.8s;
+    }
+
+    #moon-container {
+      opacity: 0;
+      pointer-events: none;
+      flex-direction: column;
+      transition: opacity 0.8s, transform 1s ease;
+      transform: translateY(-50px);
+      z-index: 15;
+    }
+
+    #moon-img {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      box-shadow: 0 0 60px 10px #fff8;
+    }
+
+    #moon-text {
+      color: #fff;
+      font-size: 2rem;
+      margin-top: -80px;
+      text-shadow: 0 0 10px #000, 0 0 20px #333;
+      text-align: center;
+      width: 300px;
+    }
+
+    .zoom-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .zoom-in {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    /* Real telescope view using clip-path */
+    #vignette {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.85); /* dark overlay */
+      clip-path: circle(150px at center); /* clear circular view */
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.8s ease;
+      z-index: 20;
+    }
+
+    /* Purple glow ring */
+    #vignette::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 300px;
+      height: 300px;
+      margin-left: -150px;
+      margin-top: -150px;
+      border-radius: 50%;
+      box-shadow: 0 0 60px 20px purple;
+      pointer-events: none;
+    }
+
+    #vignette.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Close (X) Button */
+    #close-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 2.5rem;
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+      z-index: 25;
+    }
+
+    #close-btn.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  </style>
+</head>
+<body>
+  <div id="telescope-container">
+    <img id="telescope-img" src="assets/tele.png" alt="Telescope">
+  </div>
+
+  <div id="vignette"></div>
+  <button id="close-btn" aria-label="Close vignette">&times;</button>
+
+  <div id="moon-container">
+    <img id="moon-img" src="assets/moon1.jpg" alt="Moon">
+    <div id="moon-text">Welcome to the Moon!</div>
+  </div>
+
+  <script>
+    const telescope = document.getElementById('telescope-img');
+    const telescopeContainer = document.getElementById('telescope-container');
+    const moonContainer = document.getElementById('moon-container');
+    const vignette = document.getElementById('vignette');
+    const closeBtn = document.getElementById('close-btn');
+
+    // Show the close button when vignette is active
+    function showCloseButton() {
+      closeBtn.classList.add('active');
+    }
+
+    function hideCloseButton() {
+      closeBtn.classList.remove('active');
+    }
+
+    telescope.onclick = function () {
+      telescopeContainer.classList.add('zoom-out');
+      vignette.classList.add('active');
+      showCloseButton();
+      setTimeout(() => {
+        moonContainer.classList.add('zoom-in');
+      }, 800);
+    };
+
+    closeBtn.onclick = function () {
+      moonContainer.classList.remove('zoom-in');
+      vignette.classList.remove('active');
+      hideCloseButton();
+      setTimeout(() => {
+        telescopeContainer.classList.remove('zoom-out');
+      }, 800);
+    };
+  </script>
+</body>
+</html>

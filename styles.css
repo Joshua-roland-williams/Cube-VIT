@@ -1,104 +1,112 @@
+/* Smooth Scrolling */
 html {
     scroll-behavior: smooth;
 }
 
-
-/* General Styles */
+/* General Body Styling */
 body {
     margin: 0;
-    background: url("assets/stars.jpg") no-repeat center center fixed;
-    background-size: cover;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', sans-serif;
+    background: #FFFFFF;
+    color: #0B1131;
     text-align: center;
 }
 
-/* Navigation Bar */
-nav {
+/* Navigation Bar - Light Theme */
+.navbar {
     position: fixed;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    background: purple;
-    padding: 5px 5px;
+    background: #F0D047;
+    padding: 10px 40px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(23, 119, 223, 0.8);
     margin: 10px auto;
     width: 90%;
-    height: auto;
     z-index: 1000;
 }
 
+/* Logo */
 .navbar-logo {
-    width: clamp(50px, 5vw, 200px);
+    position: absolute;
+    top: -25px;
+    left: 20px;
+    width: clamp(60px, 6vw, 110px);
     height: auto;
-    transition: transform 0.3s ease-in-out;
     border-radius: 50%;
-    margin-left: 30%;
+    box-shadow: 0 4px 12px rgba(23, 119, 223, 0.7);
+    background: white;
+    z-index: 1100;
+    transition: transform 0.3s ease-in-out;
 }
 
 .navbar-logo:hover {
-    transform: scale(1.1);
+    transform: scale(1.15);
 }
 
-nav ul {
-    list-style: none;
+/* Nav Links */
+.nav-links {
     display: flex;
     align-items: center;
-    gap: 20px;
-    padding: 0;
-    margin: 0 auto;
+    gap: 40px;
 }
 
-nav ul li {
+.nav-links a,
+.dropdown > a {
+    text-decoration: none;
+    color: #0B1131;
+    font-size: 1.1rem;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover,
+.dropdown > a:hover {
+    color: #FE7C12;
+}
+
+/* Dropdown */
+.dropdown {
     position: relative;
 }
 
-nav ul li a {
-    text-decoration: none;
-    color: white;
-    font-size: 1.1rem;
-    font-weight: bold;
-}
-
-/* Dropdown Styling */
 .dropdown-menu {
     display: none;
     position: absolute;
     top: 100%;
     left: 0;
-    background: rgb(97, 9, 97);
+    background: #DEE5E5;
     padding: 10px 0;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px rgba(23, 119, 223, 0.15);
     min-width: 180px;
+    flex-direction: column;
     z-index: 1001;
 }
 
-.dropdown-menu li {
-    display: block;
-    padding: 10px 20px;
+.dropdown:hover .dropdown-menu {
+    display: flex;
 }
 
-.dropdown-menu li a {
-    color: white;
+.dropdown-menu a {
+    color: #0B1131;
+    padding: 10px 20px;
     text-decoration: none;
     display: block;
-    font-weight: normal;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
-.dropdown:hover .dropdown-menu {
-    display: block;
-}
-
-.dropdown-menu li a:hover {
-    background: rgba(43, 41, 41, 0.911);
+.dropdown-menu a:hover {
+    background: #FE7C12;
+    color: #ffffff;
     border-radius: 5px;
 }
 
-/* Authentication Buttons */
+/* Auth Buttons */
 .auth-buttons {
     display: flex;
     gap: 10px;
@@ -110,25 +118,38 @@ button {
     border-radius: 10px;
     cursor: pointer;
     font-size: 0.9rem;
-    font-weight: bold;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(23, 119, 223, 0.4);
 }
 
 .login {
-    background: blue;
-    color: white;
+    background: #1777DF;
+    color: #FFFFFF;
+}
+
+.login:hover {
+    background: #0B1131;
+    box-shadow: 0 0 15px #0B1131;
 }
 
 .signin {
-    background: yellow;
-    color: black;
+    background: #FE7C12;
+    color: #ffffff;
+    box-shadow: 0 0 10px rgba(254, 124, 18, 0.6);
+}
+
+.signin:hover {
+    background: #d4680a;
 }
 
 /* Hero Section */
 .Hero {
     position: relative;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     overflow: hidden;
+    background: #DEE5E5;
 }
 
 .background-video {
@@ -138,46 +159,133 @@ button {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: -1;
+    filter: brightness(0.85) contrast(1.1);
+    z-index: 0;
 }
 
 .hero-text {
     position: relative;
     z-index: 1;
-    padding-top: 180px; /* Adjust so text sits below navbar */
-    color: white;
-    text-shadow: 2px 2px 5px black;
+    padding-top: 180px;
+    color: #0B1131;
+    text-shadow: 2px 2px 6px rgba(254, 124, 18, 0.7);
 }
 
-/* Title and Subtitle */
 .title {
     font-size: 3rem;
-    font-weight: bold;
-    color: white;
-    text-shadow: 3px 3px 5px black;
+    font-weight: 900;
+    color: #ffffff;
+    text-shadow: 0 0 20px rgba(23, 119, 223, 0.5);
 }
 
 .subtitle {
     font-size: 1.5rem;
-    color: white;
-    text-shadow: 2px 2px 4px black;
+    color: #FE7C12;
+    text-shadow: 0 0 10px rgba(254, 124, 18, 0.6);
 }
 
-/* Cube Image */
-.cube {
-    width: 200px;
-    margin: 20px auto;
+.custom-shape-divider-top-1747509643 {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-top-1747509643 svg {
+    position: relative;
     display: block;
+    width: calc(100% + 1.3px);
+    height: 100px;
 }
 
-/* Sections Below */
+.custom-shape-divider-top-1747509643 .shape-fill {
+    fill: #000000;
+}
+
+/* Section Styling */
 .section {
     padding: 80px 20px;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: #FFFFFF;
+    color: #0B1131;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(23, 119, 223, 0.1);
+    margin: 30px auto;
+    max-width: 900px;
+    backdrop-filter: none;
+}
+
+/* Zoom-in Animation on Scroll */
+.zoom-in {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 1s ease-out, transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.zoom-in.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Modal Background */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(8px);
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.5s;
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Modal Image */
+.modal-content {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    opacity: 0;
+    animation: imageFade 1s forwards;
+}
+
+@keyframes imageFade {
+    to { opacity: 1; }
+}
+
+/* Close Button */
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #ccc;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.close-btn:hover {
     color: white;
 }
 
-/* Responsive Styles */
+/* Blur Class */
+.blur {
+    filter: blur(8px);
+    pointer-events: none;
+}
+
+/* Responsive Styling */
 @media (max-width: 1024px) {
     .title {
         font-size: 2.5rem;
@@ -187,7 +295,8 @@ button {
         font-size: 1.3rem;
     }
 
-    nav ul li a {
+    .nav-links a,
+    .dropdown > a {
         font-size: 1rem;
     }
 
@@ -197,16 +306,15 @@ button {
 }
 
 @media (max-width: 768px) {
-    nav {
+    .navbar {
         flex-direction: column;
         gap: 10px;
         padding: 10px 15px;
     }
 
-    nav ul {
+    .nav-links {
         flex-direction: column;
         gap: 10px;
-        margin: 0;
     }
 
     .auth-buttons {
@@ -222,10 +330,6 @@ button {
     .subtitle {
         font-size: 1.1rem;
     }
-
-    .cube {
-        width: 150px;
-    }
 }
 
 @media (max-width: 480px) {
@@ -237,7 +341,8 @@ button {
         font-size: 1rem;
     }
 
-    nav ul li a {
+    .nav-links a,
+    .dropdown > a {
         font-size: 0.95rem;
     }
 
@@ -246,24 +351,9 @@ button {
         font-size: 0.8rem;
     }
 
-    .cube {
-        width: 120px;
-    }
-
     .navbar-logo {
         width: 50px;
+        top: -15px;
+        left: 15px;
     }
 }
-
-.zoom-in {
-    opacity: 0;
-    transform: scale(0.95);
-    transition: opacity 1s ease-out, transform 1s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.zoom-in.visible {
-    opacity: 1;
-    transform: scale(1);
-}
-
-

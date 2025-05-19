@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Constellation Timeline</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #0a0a1a;
+      color: #fff;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .header {
+      padding: 20px;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.3);
+      position: relative;
+      z-index: 10;
+    }
+    
+    .header h1 {
+      font-size: 2.5rem;
+      color: #ffd700;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+      margin-bottom: 15px;
+    }
+    
+    .header p {
+      font-size: 1.2rem;
+      color: #ddd;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .constellation-container {
+      position: relative;
+      flex-grow: 1;
+      overflow: hidden;
+    }
+    
+    #starfield {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .star {
+      position: absolute;
+      background-color: #ffde7d;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      z-index: 2;
+    }
+    
+    .star::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 300%;
+      height: 300%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      z-index: -1;
+    }
+    
+    .star:hover {
+      transform: scale(1.5);
+      box-shadow: 0 0 20px #ffd700, 0 0 40px #ffd700;
+      z-index: 3;
+    }
+    
+    .star-event {
+      position: absolute;
+      background-color: rgba(10, 10, 30, 0.9);
+      border: 1px solid #ffd700;
+      border-radius: 10px;
+      padding: 15px;
+      max-width: 250px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      z-index: 5;
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+      pointer-events: none;
+    }
+    
+    .star-event h3 {
+      color: #ffd700;
+      margin-bottom: 8px;
+      font-size: 1.2rem;
+    }
+    
+    .star-event p {
+      color: #ddd;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    .star:hover + .star-event {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .constellation-line {
+      position: absolute;
+      background-color: rgba(255, 215, 0, 0.2);
+      z-index: 1;
+      transform-origin: left center;
+      transition: background-color 0.3s ease;
+    }
+    
+    .constellation-line.active {
+      background-color: rgba(255, 215, 0, 0.6);
+    }
+    
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.85);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    
+    .modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .modal-content {
+      background-color: #121236;
+      border: 2px solid #ffd700;
+      border-radius: 15px;
+      width: 80%;
+      max-width: 800px;
+      max-height: 80vh;
+      overflow-y: auto;
+      padding: 30px;
+      position: relative;
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+      transform: scale(0.9);
+      opacity: 0;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+    
+    .modal.active .modal-content {
+      transform: scale(1);
+      opacity: 1;
+    }
+    
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: 30px;
+      height: 30px;
+      background-color: transparent;
+      border: none;
+      color: #ffd700;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: transform 0.3s ease;
+    }
+    
+    .close-modal:hover {
+      transform: rotate(90deg);
+    }
+    
+    .event-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+    }
+    
+    .event-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: #ffd700;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 20px;
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+    }
+    
+    .event-title {
+      flex-grow: 1;
+    }
+    
+    .event-title h2 {
+      color: #ffd700;
+      font-size: 2rem;
+      margin-bottom: 5px;
+    }
+    
+    .event-title p {
+      color: #aaa;
+      font-size: 1rem;
+    }
+    
+    .event-body {
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+    
+    .event-body p {
+      margin-bottom: 15px;
+    }
+    
+    .event-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+    
+    .gallery-item {
+      height: 120px;
+      background-color: #1c1c42;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+    
+    .gallery-item:hover {
+      transform: scale(1.05);
+    }
+    
+    @media (max-width: 768px) {
+      .header h1 {
+        font-size: 1.8rem;
+      }
+      
+      .header p {
+        font-size: 1rem;
+      }
+      
+      .modal-content {
+        width: 95%;
+        padding: 20px;
+      }
+      
+      .event-title h2 {
+        font-size: 1.5rem;
+      }
+      
+      .event-gallery {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      }
+    }
+    
+    .shooting-star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: linear-gradient(to right, rgba(255, 255, 255, 0), #fff 50%, rgba(255, 255, 255, 0));
+      animation: shooting 3s linear infinite;
+      opacity: 0;
+    }
+    
+    @keyframes shooting {
+      0% {
+        transform: translateX(0) translateY(0) rotate(215deg);
+        opacity: 0;
+      }
+      5% {
+        opacity: 1;
+      }
+      70% {
+        transform: translateX(-500px) translateY(500px) rotate(215deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateX(-700px) translateY(700px) rotate(215deg);
+        opacity: 0;
+      }
+    }
+    
+    .twinkle {
+      animation: twinkle 4s ease-in-out infinite;
+    }
+    
+    @keyframes twinkle {
+      0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.2);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Celestial Timeline</h1>
+    <p>Explore our constellation of events. Hover over stars to preview, click for details.</p>
+  </div>
+  
+  <div class="constellation-container">
+    <div id="starfield"></div>
+  </div>
+  
+  <div class="modal" id="eventModal">
+    <div class="modal-content">
+      <button class="close-modal" id="closeModal">×</button>
+      <div class="event-header">
+        <div class="event-icon">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#121236" stroke-width="2">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+          </svg>
+        </div>
+        <div class="event-title">
+          <h2 id="modalTitle">Event Title</h2>
+          <p id="modalDate">Event Date</p>
+        </div>
+      </div>
+      <div class="event-body" id="modalDescription">
+        <p>Detailed event description will appear here.</p>
+      </div>
+      <div class="event-gallery">
+        <div class="gallery-item">
+          <img src="/api/placeholder/150/120" alt="Event image 1" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div class="gallery-item">
+          <img src="/api/placeholder/150/120" alt="Event image 2" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div class="gallery-item">
+          <img src="/api/placeholder/150/120" alt="Event image 3" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Event data
+    const events = [
+      {
+        id: 1,
+        title: "Project Launch",
+        date: "January 15, 2025",
+        summary: "Initial launch of our flagship project",
+        description: `<p>The project launch marked a significant milestone in our company's history. After months of development and testing, we finally unveiled our flagship product to the world.</p>
+                      <p>The launch event was attended by industry leaders, investors, and tech enthusiasts from around the globe. The reception was overwhelmingly positive, with many praising the innovative approach and attention to detail.</p>
+                      <p>This launch set the foundation for all future developments and established our reputation in the market.</p>`,
+        position: { x: 25, y: 20 }
+      },
+      {
+        id: 2,
+        title: "International Expansion",
+        date: "March 8, 2025",
+        summary: "Opening of our first international office",
+        description: `<p>Our international expansion began with the opening of our first overseas office. This strategic move allowed us to better serve our growing international client base and tap into new markets.</p>
+                      <p>The new office is equipped with state-of-the-art facilities and staffed with a team of local experts who understand the regional market dynamics. This blend of global vision and local insight has proven to be a winning formula.</p>
+                      <p>Within the first quarter of operations, the new office exceeded all performance expectations and secured several major contracts.</p>`,
+        position: { x: 45, y: 35 }
+      },
+      {
+        id: 3,
+        title: "Major Partnership",
+        date: "May 22, 2025",
+        summary: "Strategic alliance with industry leader",
+        description: `<p>The partnership agreement signed with an industry leader marked a turning point in our business strategy. This collaboration combines our innovative approach with their established market presence, creating synergies that benefit both organizations.</p>
+                      <p>Joint research initiatives, co-developed products, and shared marketing efforts are just some of the activities outlined in this comprehensive partnership.</p>
+                      <p>The announcement of this alliance resulted in a significant boost in stakeholder confidence and an immediate positive impact on our market valuation.</p>`,
+        position: { x: 70, y: 25 }
+      },
+      {
+        id: 4,
+        title: "Technological Breakthrough",
+        date: "August 3, 2025",
+        summary: "Revolutionary new technology unveiled",
+        description: `<p>After years of research and development, our team achieved a major technological breakthrough that has the potential to revolutionize the industry. The patented innovation addresses a long-standing challenge that competitors have struggled to solve.</p>
+                      <p>The technology has been successfully tested in various environments and consistently demonstrated superior performance compared to existing solutions.</p>
+                      <p>Industry analysts have recognized the significance of this breakthrough, with several predicting it will establish a new standard for years to come.</p>`,
+        position: { x: 85, y: 60 }
+      },
+      {
+        id: 5,
+        title: "Community Initiative",
+        date: "October 12, 2025",
+        summary: "Launch of our sustainable development program",
+        description: `<p>Our commitment to social responsibility took a concrete form with the launch of a comprehensive sustainable development program. This initiative focuses on reducing environmental impact, supporting local communities, and promoting inclusive growth.</p>
+                      <p>The program includes specific targets for carbon footprint reduction, diversity and inclusion metrics, and community engagement activities.</p>
+                      <p>This initiative has not only strengthened our corporate image but also boosted employee morale and attracted talent that shares our values.</p>`,
+        position: { x: 60, y: 80 }
+      },
+      {
+        id: 6,
+        title: "Award Recognition",
+        date: "November 30, 2025",
+        summary: "Winner of prestigious industry award",
+        description: `<p>Our innovative approach and commitment to excellence were recognized at the annual industry awards ceremony, where we received the highest honor in our category. This prestigious recognition validates our vision and the hard work of our entire team.</p>
+                      <p>The judging panel specifically highlighted our dedication to quality, customer satisfaction, and technological innovation as key factors in their decision.</p>
+                      <p>This award has significantly raised our profile within the industry and opened doors to new opportunities and partnerships.</p>`,
+        position: { x: 35, y: 70 }
+      },
+      {
+        id: 7,
+        title: "Product Milestone",
+        date: "February 18, 2026",
+        summary: "One millionth customer milestone",
+        description: `<p>Reaching one million customers was a landmark achievement that demonstrated the widespread adoption and impact of our solutions. This milestone reflects not just the quantity of our customer base but the quality of the relationships we've built.</p>
+                      <p>To celebrate this achievement, we launched a special customer appreciation campaign and implemented several enhancements based on user feedback.</p>
+                      <p>The data collected from this large user base has provided invaluable insights that are guiding our product development roadmap and marketing strategies.</p>`,
+        position: { x: 15, y: 50 }
+      }
+    ];
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const starfield = document.getElementById('starfield');
+      const modal = document.getElementById('eventModal');
+      const closeModal = document.getElementById('closeModal');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalDate = document.getElementById('modalDate');
+      const modalDescription = document.getElementById('modalDescription');
+      
+      // Create background stars
+      for (let i = 0; i < 150; i++) {
+        createBackgroundStar();
+      }
+      
+      // Create shooting stars
+      for (let i = 0; i < 5; i++) {
+        setTimeout(() => {
+          createShootingStar();
+        }, i * 7000);
+      }
+      
+      // Create event stars and connections
+      events.forEach((event, index) => {
+        createEventStar(event);
+        
+        // Connect stars with lines to form constellation
+        if (index > 0) {
+          connectStars(events[index - 1], event);
+        }
+      });
+      
+      // Connect last and first star to complete the constellation
+      connectStars(events[events.length - 1], events[0]);
+      
+      closeModal.addEventListener('click', function() {
+        modal.classList.remove('active');
+      });
+      
+      function createBackgroundStar() {
+        const star = document.createElement('div');
+        const size = Math.random() * 2 + 1;
+        const opacity = Math.random() * 0.7 + 0.3;
+        
+        star.classList.add('star', 'twinkle');
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.top = `${Math.random() * 100}%`;
+        star.style.opacity = opacity;
+        star.style.animationDelay = `${Math.random() * 4}s`;
+        
+        starfield.appendChild(star);
+      }
+      
+      function createShootingStar() {
+        const star = document.createElement('div');
+        star.classList.add('shooting-star');
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.top = `${Math.random() * 60}%`;
+        star.style.animationDelay = `${Math.random() * 10}s`;
+        starfield.appendChild(star);
+        
+        // Set timeout to remove shooting star after animation
+        setTimeout(() => {
+          star.remove();
+          createShootingStar();
+        }, 3000);
+      }
+      
+      function createEventStar(event) {
+        const star = document.createElement('div');
+        const starEvent = document.createElement('div');
+        const containerWidth = starfield.offsetWidth;
+        const containerHeight = starfield.offsetHeight;
+        const xPos = (event.position.x / 100) * containerWidth;
+        const yPos = (event.position.y / 100) * containerHeight;
+        
+        star.classList.add('star');
+        star.dataset.id = event.id;
+        star.style.width = '12px';
+        star.style.height = '12px';
+        star.style.left = `${xPos}px`;
+        star.style.top = `${yPos}px`;
+        star.style.boxShadow = '0 0 10px #ffd700, 0 0 20px #ffd700';
+        
+        starEvent.classList.add('star-event');
+        starEvent.innerHTML = `
+          <h3>${event.title}</h3>
+          <p>${event.date}</p>
+          <p>${event.summary}</p>
+        `;
+        
+        // Position the event info based on star position
+        const centerX = containerWidth / 2;
+        const centerY = containerHeight / 2;
+        
+        if (xPos > centerX) {
+          starEvent.style.right = `${containerWidth - xPos + 20}px`;
+        } else {
+          starEvent.style.left = `${xPos + 20}px`;
+        }
+        
+        if (yPos > centerY) {
+          starEvent.style.bottom = `${containerHeight - yPos + 20}px`;
+        } else {
+          starEvent.style.top = `${yPos + 20}px`;
+        }
+        
+        star.addEventListener('click', function() {
+          openEventModal(event);
+        });
+        
+        starfield.appendChild(star);
+        starfield.appendChild(starEvent);
+      }
+      
+      function connectStars(event1, event2) {
+        const containerWidth = starfield.offsetWidth;
+        const containerHeight = starfield.offsetHeight;
+        const x1 = (event1.position.x / 100) * containerWidth + 6; // Add half of star width
+        const y1 = (event1.position.y / 100) * containerHeight + 6;
+        const x2 = (event2.position.x / 100) * containerWidth + 6;
+        const y2 = (event2.position.y / 100) * containerHeight + 6;
+        
+        const line = document.createElement('div');
+        line.classList.add('constellation-line');
+        
+        const length = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
+        const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+        
+        line.style.width = `${length}px`;
+        line.style.height = '1px';
+        line.style.left = `${x1}px`;
+        line.style.top = `${y1}px`;
+        line.style.transform = `rotate(${angle}deg)`;
+        
+        starfield.appendChild(line);
+      }
+      
+      function openEventModal(event) {
+        modalTitle.textContent = event.title;
+        modalDate.textContent = event.date;
+        modalDescription.innerHTML = event.description;
+        
+        modal.classList.add('active');
+      }
+      
+      // Add window resize event to reposition stars and lines
+      window.addEventListener('resize', function() {
+        // Clear starfield
+        starfield.innerHTML = '';
+        
+        // Recreate background stars
+        for (let i = 0; i < 150; i++) {
+          createBackgroundStar();
+        }
+        
+        // Recreate event stars and connections
+        events.forEach((event, index) => {
+          createEventStar(event);
+          
+          if (index > 0) {
+            connectStars(events[index - 1], event);
+          }
+        });
+        
+        connectStars(events[events.length - 1], events[0]);
+      });
+    });
+  </script>
+</body>
+</html>
