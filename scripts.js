@@ -22,12 +22,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (section && modal && closeBtn) {
         section.addEventListener('click', () => {
-            modal.style.display = 'flex';
+            // Create the star overlay div
+            const starOverlay = document.createElement('div');
+            starOverlay.classList.add('star-transition');
+            document.body.appendChild(starOverlay);
 
-            // Blur everything except the modal
-            document.querySelectorAll('body > *:not(#visionModal)').forEach(el => {
+            // Blur everything except the modal (modal shown after delay)
+            document.querySelectorAll('body > *:not(#visionModal):not(.star-transition)').forEach(el => {
                 el.classList.add('blur');
             });
+
+            // Show modal after 3 seconds and remove star overlay
+            setTimeout(() => {
+                modal.style.display = 'flex';
+                starOverlay.remove();
+            }, 3000);
         });
 
         closeBtn.addEventListener('click', () => {
@@ -47,3 +56,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+function scrollInsights(direction) {
+  const container = document.getElementById('insightsCards');
+  const scrollAmount = 300; // pixels
+
+  container.scrollBy({
+    left: direction * scrollAmount,
+    behavior: 'smooth'
+  });
+}

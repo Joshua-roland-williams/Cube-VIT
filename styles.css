@@ -357,3 +357,138 @@ button {
         left: 15px;
     }
 }
+
+.star-transition {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black url('assets/starry.png') repeat;
+    z-index: 9998;
+    animation: starScroll 2s linear forwards;
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+@keyframes starScroll {
+    0% {
+        background-position: 0 0;
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90%
+    {
+        opacity: 1;
+    }
+    100% {
+        background-position: -3000px 3000px;
+        opacity: 0;
+    }
+}
+
+#insights
+{
+    width: 100vw;
+}
+
+/* Insights Section */
+.insights-container {
+  background : linear-gradient(to top,#1777DF, #0B1131);
+  border-radius: 20px;
+  padding: 30px;
+  text-align: center;
+  max-width: 90%;
+  margin: auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.insights-title {
+  font-size: 2rem;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.insights-subtitle {
+  font-size: 1.1rem;
+  color: #c59d9d;
+  margin-bottom: 30px;
+}
+
+/* Scrollable Cards */
+.insights-scroll-wrapper {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.insights-cards {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 10px;
+  scrollbar-width: none; /* Firefox */
+}
+
+.insights-cards::-webkit-scrollbar {
+  display: none; /* Chrome */
+}
+
+.insight-card {
+  flex: 0 0 250px;
+  background-color: #1777DF;
+  color: white;
+  padding: 20px;
+  border-radius: 15px;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* Arrows */
+.scroll-btn {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #0B1131;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 10;
+}
+
+.scroll-btn.left {
+  margin-right: 10px;
+}
+
+.scroll-btn.right {
+  margin-left: 10px;
+}
+.footer {
+  background-color: #0B1131;
+  color: #DEE5E5;
+  text-align: center;
+  padding: 40px 20px;
+  margin-top: 50px;
+}
+
+.footer a {
+  color: #FE7C12;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+.footer-content h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.footer-content p {
+  margin: 6px 0;
+  font-size: 1rem;
+}
