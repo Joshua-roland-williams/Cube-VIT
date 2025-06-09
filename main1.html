@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="main1.css" rel="stylesheet" />
+    <title>Document</title>
+    <style>
+    .imga-mirror {
+      position: absolute;
+      top: 25px;
+      left: 150px;
+      width: 100px;
+      height: 100px;
+      transform: rotate(6deg) scaleX(-1);
+
+    }
+    .imga {
+      position: absolute;
+      top: 25px;
+      right: 150px;
+      width: 100px;
+      height: 100px;
+      transform: rotate(-6deg); /* Flip horizontally */
+    }
+  </style>
+  </head>
+  <body>
+    <div class="container">
+      <svg
+        viewBox="40 0 440 190"
+        xmlns="http://www.w3.org/2000/svg"
+        class="metal-shape"
+        preserveAspectRatio="xMidYMid meet"
+      >
+        <defs>
+          <!-- Brushed metal gradient -->
+          <linearGradient id="metalGradient" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#a0a0a0" />
+            <stop offset="25%" stop-color="#d0d0d0" />
+            <stop offset="50%" stop-color="#909090" />
+            <stop offset="75%" stop-color="#c0c0c0" />
+            <stop offset="100%" stop-color="#a0a0a0" />
+          </linearGradient>
+
+          <!-- Noise filter to simulate brushed texture -->
+          <filter id="noiseFilter">
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.02"
+              numOctaves="2"
+              stitchTiles="stitch"
+            />
+            <feDisplacementMap in="SourceGraphic" scale="1" />
+          </filter>
+        </defs>
+
+        <!-- Curved trapezoid shape -->
+        <path
+          d="M 40 20 
+            C 100 0, 420 0, 480 20 
+            L 480 170 
+            C 420 190, 100 190, 40 170 
+            Z"
+          fill="url(#metalGradient)"
+          filter="url(#noiseFilter)"
+          stroke="#666"
+          stroke-width="2"
+        />
+      </svg>
+      <div class="side left"></div>
+      <div class="side right"></div>
+      <div class="metal-button button events" style="left: 440px; top: 100px">
+        <span class="material-icons"></span>
+      </div>
+      <div class="metal-button">
+        <span class="material-icons" style="left: 550px; top: 90px"></span>
+      </div>
+      <div class="metal-button button timer" style="left: 660px; top: 100px">
+        <span class="material-icons"></span>
+      </div>
+      <div class="display">0.00</div>
+      <div class="pin-light" style="top: 90px; left: 650px"></div>
+      <div class="metal-button-group">
+        <div class="metal-panel" style="right: 795px; top: 92px">
+          <div class="metal-knob"></div>
+        </div>
+        <div
+          class="metal-panel"
+          style="left: 790px; transform: rotate(-6.4deg)"
+        >
+          <div class="metal-knob"></div>
+        </div>
+        <div class="metal-panel"style='left: 795px; transform: rotate(-6.4deg);top: 92px''>
+          <div class="metal-knob"></div>
+        </div>
+        <div class="metal-panel">
+          <div class="metal-knob"></div>
+        </div>
+      </div>
+
+      <div class="gap-filler"></div>
+      <div class="gap-fillerr"></div>
+      <img src="abuse_icon.png" alt="Mirrored Icon" class="imga-mirror">
+      <img src="abuse_icon.png" alt="Hand Icon" class="imga" width="100" height="100" >
+      
+    </div>
+    
+  </body>
+</html>
