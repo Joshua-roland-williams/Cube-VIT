@@ -8,6 +8,58 @@
   --section-alt: #2a3558;
 }
 
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  scroll-behavior: smooth;
+  font-family: 'Inter', sans-serif;
+}
+
+.hero {
+  height: 100vh;
+  background: #111;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+}
+
+.video-scroll-section {
+  height: 200vh; /* Creates scroll space */
+  position: relative;
+  background: black;
+}
+
+.video-scroll-section video {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+}
+
+.after-video-text {
+  min-height: 100vh;
+  padding: 3rem;
+  background: #f9f9f9;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s ease;
+}
+
+
+
+
+
+
+
 /* Smooth Scrolling */
 html {
   scroll-behavior:smooth;

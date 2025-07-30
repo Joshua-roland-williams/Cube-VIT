@@ -1,0 +1,181 @@
+{
+  "January 2024": [
+    {
+      "id": "jan-1",
+      "title": "New Year Speedcubing Challenge",
+      "date": "January 5, 2024",
+      "summary": "Kick off the year with a speedcubing competition",
+      "description": "<p>Our first event of the year brought together cubers of all skill levels to compete in various categories. Participants challenged themselves with 3x3, 4x4, and blindfolded solving.</p><p>The event was a great success with over 50 participants and several new records set by our club members.</p>",
+      "images": ["https://images.unsplash.com/photo-1589476993333-f55b84301219", "https://images.unsplash.com/photo-1596149615189-91bd9640d9b9"]
+    },
+    {
+      "id": "jan-2",
+      "title": "Workshop: Advanced F2L Techniques",
+      "date": "January 15, 2024",
+      "summary": "Learn advanced First Two Layers techniques",
+      "description": "<p>This workshop focused on improving participants' F2L (First Two Layers) techniques, which is crucial for sub-20 second solves.</p><p>Our senior members demonstrated various approaches and provided personalized feedback to attendees.</p>",
+      "images": ["https://images.unsplash.com/photo-1589476993333-f55b84301219"]
+    }
+  ],
+  "February 2024": [
+    {
+      "id": "feb-1",
+      "title": "Valentine's Day Team Solve",
+      "date": "February 14, 2024",
+      "summary": "Partner cubing event for Valentine's Day",
+      "description": "<p>A special team-based solving event where pairs worked together to solve cubes with one hand each. The event was both challenging and fun, with prizes for the fastest teams.</p>",
+      "images": ["https://images.unsplash.com/photo-1596149615189-91bd9640d9b9", "https://images.unsplash.com/photo-1589476993333-f55b84301219"]
+    }
+  ],
+  "March 2024": [
+    {
+      "id": "mar-1",
+      "title": "Spring Cube-a-Thon",
+      "date": "March 10, 2024",
+      "summary": "Day-long cubing marathon",
+      "description": "<p>Our annual marathon event featured non-stop cubing activities from morning to evening, including relays, team solves, and novelty events like \"feet only\" solving.</p>",
+      "images": ["https://images.unsplash.com/photo-1589476993333-f55b84301219"]
+    },
+    {
+      "id": "mar-2",
+      "title": "Beginner's Workshop",
+      "date": "March 22, 2024",
+      "summary": "Introduction to speedcubing for new members",
+      "description": "<p>This workshop introduced new members to the basics of speedcubing, covering notation, beginner's method, and practice techniques.</p>",
+      "images": []
+    }
+  ],
+  "April 2024": [
+    {
+      "id": "apr-1",
+      "title": "April Fools' Cube Modding",
+      "date": "April 1, 2024",
+      "summary": "Create and solve modified cubes",
+      "description": "<p>A light-hearted event where members created and attempted to solve modified cubes, including stickerless cubes with identical colors on opposite sides.</p>",
+      "images": []
+    }
+  ],
+  "May 2024": [
+    {
+      "id": "may-1",
+      "title": "Pre-Summer Championship",
+      "date": "May 12, 2024",
+      "summary": "Competition to crown our pre-summer champions",
+      "description": "<p>The last major competition before summer break, with categories for all WCA events. Winners received special trophies designed by our art club.</p>",
+      "images": ["https://images.unsplash.com/photo-1596149615189-91bd9640d9b9"]
+    },
+    {
+      "id": "may-2",
+      "title": "Cube Donation Drive",
+      "date": "May 25, 2024",
+      "summary": "Collect cubes for local schools",
+      "description": "<p>Members donated cubes to be distributed to local schools to help spread cubing enthusiasm. We collected over 100 cubes!</p>",
+      "images": []
+    },
+    {
+      "id": "may-3",
+      "title": "Pre-Summer Championship",
+      "date": "May 12, 2024",
+      "summary": "Competition to crown our pre-summer champions",
+      "description": "<p>The last major competition before summer break, with categories for all WCA events. Winners received special trophies designed by our art club.</p>",
+      "images": ["https://images.unsplash.com/photo-1596149615189-91bd9640d9b9"]
+    },
+    {
+      "id": "may-4",
+      "title": "Cube Donation Drive",
+      "date": "May 25, 2024",
+      "summary": "Collect cubes for local schools",
+      "description": "<p>Members donated cubes to be distributed to local schools to help spread cubing enthusiasm. We collected over 100 cubes!</p>",
+      "images": []
+    },
+    {
+      "id": "may-5",
+      "title": "Pre-Summer Championship",
+      "date": "May 12, 2024",
+      "summary": "Competition to crown our pre-summer champions",
+      "description": "<p>The last major competition before summer break, with categories for all WCA events. Winners received special trophies designed by our art club.</p>",
+      "images": ["https://images.unsplash.com/photo-1596149615189-91bd9640d9b9"]
+    },
+    {
+      "id": "may-6",
+      "title": "Cube Donation Drive",
+      "date": "May 25, 2024",
+      "summary": "Collect cubes for local schools",
+      "description": "<p>Members donated cubes to be distributed to local schools to help spread cubing enthusiasm. We collected over 100 cubes!</p>",
+      "images": []
+    },
+    {
+      "id": "may-7",
+      "title": "Pre-Summer Championship",
+      "date": "May 12, 2024",
+      "summary": "Competition to crown our pre-summer champions",
+      "description": "<p>The last major competition before summer break, with categories for all WCA events. Winners received special trophies designed by our art club.</p>",
+      "images": ["https://images.unsplash.com/photo-1596149615189-91bd9640d9b9"]
+    },
+    {
+      "id": "may-8",
+      "title": "Cube Donation Drive",
+      "date": "May 25, 2024",
+      "summary": "Collect cubes for local schools",
+      "description": "<p>Members donated cubes to be distributed to local schools to help spread cubing enthusiasm. We collected over 100 cubes!</p>",
+      "images": []
+    }
+  ],
+  "January 2025": [
+    {
+      "id": "jan25-1",
+      "title": "Winter Cube Relay Championship",
+      "date": "January 7, 2025",
+      "summary": "Team-based speedcubing competition in winter theme",
+      "description": "<p>Teams of four compete in a relay format where each member must complete their cube before passing to the next teammate. Winter-themed cubes will be provided for the final round.</p>",
+      "images": [
+        "https://images.unsplash.com/photo-1517438322307-e67111335449",
+        "https://images.unsplash.com/photo-1605100804763-247f67b3557e"
+      ]
+    },
+    {
+      "id": "jan25-2",
+      "title": "Blindfold Solving Workshop",
+      "date": "January 12, 2025",
+      "summary": "Master the art of solving cubes without looking",
+      "description": "<p>Learn advanced memorization techniques and solving methods for blindfold cubing. Suitable for intermediate cubers looking to challenge themselves.</p>",
+      "images": [
+        "https://images.unsplash.com/photo-1551269901-5c5e14c25df7",
+        "https://images.unsplash.com/photo-1511988617509-a57c8a288659"
+      ]
+    },
+    {
+      "id": "jan25-3",
+      "title": "MegaMinx Marathon",
+      "date": "January 18, 2025",
+      "summary": "All-day event focused on the 12-sided puzzle",
+      "description": "<p>Special competition and practice sessions dedicated to the Megaminx puzzle, with categories for beginners and advanced solvers.</p>",
+      "images": [
+        "https://images.unsplash.com/photo-1594007654729-407eedc4be65",
+        "https://images.unsplash.com/photo-1567602901358-5ba00815eb15"
+      ]
+    },
+    {
+      "id": "jan25-4",
+      "title": "Cube Customization Day",
+      "date": "January 22, 2025",
+      "summary": "Modify and personalize your cubes",
+      "description": "<p>Bring your old cubes and learn how to modify them for better performance or unique appearances. Lubrication, spring adjustments, and sticker customization stations available.</p>",
+      "images": [
+        "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789",
+        "https://images.unsplash.com/photo-1597852074816-d933c7d2b988"
+      ]
+    },
+    {
+      "id": "jan25-5",
+      "title": "Speedcubing Tournament: Frozen Edition",
+      "date": "January 29, 2025",
+      "summary": "Compete with cold hands challenge",
+      "description": "<p>Unique tournament where competitors must first chill their hands in ice water before each solve. Tests both speed and ability to perform under adverse conditions.</p>",
+      "images": [
+        "https://images.unsplash.com/photo-1517438476312-10d79c077509",
+        "https://images.unsplash.com/photo-1567602901358-5ba00815eb15"
+      ]
+    }
+  ]
+}

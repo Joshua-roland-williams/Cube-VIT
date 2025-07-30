@@ -66,3 +66,46 @@ function scrollInsights(direction) {
     behavior: 'smooth'
   });
 }
+const video = document.getElementById('scrollVideo');
+  const section = document.querySelector('.video-scroll-section');
+  const afterText = document.getElementById('afterText');
+
+  let scrollFraction = 0;
+  let targetTime = 0;
+  let duration = 1;
+
+  // Wait for video metadata to load
+  video.addEventListener('loadedmetadata', () => {
+    duration = video.duration;
+  });
+
+  // Update scrollFraction on scroll
+  window.addEventListener('scroll', () => {
+    const rect = section.getBoundingClientRect();
+    if (rect.top <= 0 && rect.bottom >= window.innerHeight) {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
+      scrollFraction = (scrollTop - sectionTop) / (sectionHeight - window.innerHeight);
+      scrollFraction = Math.min(Math.max(scrollFraction, 0), 1);
+      targetTime = scrollFraction * duration;
+    }
+
+    if (rect.bottom <= window.innerHeight + 10) {
+      afterText.style.opacity = 1;
+      afterText.style.transform = 'translateY(0)';
+    }
+  });
+
+  // Smoothly update currentTime with easing
+  function smoothScrub() {
+    if (!isNaN(video.duration)) {
+      const currentTime = video.currentTime;
+      const delta = targetTime - currentTime;
+      video.currentTime += delta * 0.1; // 0.1 = easing factor (adjust for smoother/faster)
+    }
+    requestAnimationFrame(smoothScrub);
+  }
+
+  // Start the loop
+  requestAnimationFrame(smoothScrub);

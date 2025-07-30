@@ -8,7 +8,7 @@ body {
   transform: translate(-50%, -50%);
   top: 88%;
   left: 50%;
-  border: 2px solid magenta;
+  /* border: 2px solid magenta; */
 }
 .metal-shape {
   position: absolute;
